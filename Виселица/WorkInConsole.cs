@@ -12,8 +12,8 @@ namespace Виселица
         {
             int lifes = 1;
             Console.WriteLine("Здравсвтуй, сейчас я загадаю слово. Выбери сколько жизней у тебя будет");
-            bool resultParse = int.TryParse(Console.ReadLine(), out lifes)
-            if(!resultParse)
+            bool resultParse = int.TryParse(Console.ReadLine(), out lifes);
+            if (!resultParse)
             {
                 do
                 {
@@ -23,13 +23,11 @@ namespace Виселица
                 while (!resultParse);
             }
             return lifes;
-           
-
         }
-        public void DisplayWordwithLifes(int lifes, string encryptedWord)
+        public void DisplayWordwithLifes(int lifes, string encryptedWord, string declination)
         {
             Console.Clear();
-            Console.WriteLine($"осталось {lifes} жизней") ;
+            Console.WriteLine($"осталось {lifes} {declination}") ;
             Console.WriteLine(encryptedWord);
         }
         public char ReadSymbol()

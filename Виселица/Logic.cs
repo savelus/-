@@ -22,11 +22,20 @@ namespace Виселица
             char[] encryptedWord = GetEncryptedWord(lengthWord);
             while (remainingCharacters != 0 && counterLifes != 0 )
             {
-                consoleworker.DisplayWordwithLifes(counterLifes, new string(encryptedWord));
+                consoleworker.DisplayWordwithLifes(counterLifes, new string(encryptedWord), DeclinationLife(counterLifes));
                 char sym = consoleworker.ReadSymbol();
                 UpdateStats(ref remainingCharacters, ref counterLifes, sym, word, encryptedWord);
             }
             consoleworker.WriteEndMessage();
+        }
+        private string DeclinationLife (int counterLifes)
+        {
+            if (counterLifes % 10 == 0 || (counterLifes % 10 >= 5 && counterLifes % 10 <= 9) || (counterLifes >= 10 && counterLifes <= 20))
+                return "жизней";
+            else if (counterLifes % 10 == 1)
+                return "жизнь";
+            else
+                return "жизни";
         }
         private char[] GetEncryptedWord(int lengthWord)
         {
