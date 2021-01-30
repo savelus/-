@@ -37,10 +37,17 @@ namespace Виселица
             char[] inputinchar = input.ToLower().ToCharArray();
             return inputinchar[0];
         }
-        public void WriteEndMessage()
+        public void WriteEndMessage(bool win)
         {
             Console.Clear();
-            Console.WriteLine("Конец игры друг");
+            if (win)
+            {
+                Console.WriteLine("Ты победил, конец игры.");
+            }
+            else
+            {
+                Console.WriteLine("Ты проиграл, конец игры.");
+            }
             Console.ReadLine();
         }
 

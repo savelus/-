@@ -26,7 +26,9 @@ namespace Виселица
                 char sym = consoleworker.ReadSymbol();
                 UpdateStats(ref remainingCharacters, ref counterLifes, sym, word, encryptedWord);
             }
-            consoleworker.WriteEndMessage();
+            if( counterLifes == 0)
+                consoleworker.WriteEndMessage(false);
+
         }
         private string DeclinationLife (int counterLifes)
         {
