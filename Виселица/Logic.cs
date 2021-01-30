@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace Виселица
 {
@@ -20,17 +20,29 @@ namespace Виселица
             int lengthWord = word.Length;
             int remainingCharacters = lengthWord;
             char[] encryptedWord = GetEncryptedWord(lengthWord);
-            while (remainingCharacters != 0 && counterLifes != 0 )
+            do
             {
-                consoleworker.DisplayWordwithLifes(counterLifes, new string(encryptedWord), DeclinationLife(counterLifes));
+                DisplayWordWithLifes(counterLifes, encryptedWord, false);
                 char sym = consoleworker.ReadSymbol();
+                int lifesBeforeUpdates = counterLifes;
                 UpdateStats(ref remainingCharacters, ref counterLifes, sym, word, encryptedWord);
+                if (lifesBeforeUpdates != counterLifes)
+                {
+                    DisplayWordWithLifes(counterLifes, encryptedWord, true);
+                    Thread.Sleep(200);
+                }
             }
-            if( counterLifes == 0)
+            while (remainingCharacters != 0 && counterLifes != 0);
+            if ( counterLifes == 0)
                 consoleworker.WriteEndMessage(false);
+        }
+        private void DisplayWordWithLifes(int counterLifes, char[] encryptedWord, bool mistake)
+        {
+            WorkInConsole consoleworker = new WorkInConsole();
+            consoleworker.DisplayWordwithLifes(counterLifes, new string(encryptedWord), DeclinationLife(counterLifes), mistake);
 
         }
-        private string DeclinationLife (int counterLifes)
+        private string DeclinationLife (int counterLifes) //склонение "Жизнь"
         {
             if (counterLifes % 10 == 0 || (counterLifes % 10 >= 5 && counterLifes % 10 <= 9) || (counterLifes >= 10 && counterLifes <= 20))
                 return "жизней";
@@ -39,7 +51,7 @@ namespace Виселица
             else
                 return "жизни";
         }
-        private char[] GetEncryptedWord(int lengthWord)
+        private char[] GetEncryptedWord(int lengthWord) //массив "_"
         {
             char[] encryptedWord = new char[lengthWord];
             for (int i = 0; i < lengthWord; i++)
@@ -48,7 +60,7 @@ namespace Виселица
             }
             return encryptedWord;
         }
-        private void UpdateStats(ref int remainingCharacters, ref int counterLifes, char sym, string word,  char[] encryptedWord)
+        private void UpdateStats(ref int remainingCharacters, ref int counterLifes, char sym, string word,  char[] encryptedWord) // изменеяет статистику
         {
             if (!IsContains(word, sym))
             {
@@ -66,7 +78,7 @@ namespace Виселица
                 }
             }
         }
-        private bool IsContains(string word, char sym)
+        private bool IsContains(string word, char sym) //буква содержится в загаданном слове
         {
             foreach (var ch in word)
             {
@@ -78,5 +90,6 @@ namespace Виселица
             return false;
             
         }
+
     }
 }

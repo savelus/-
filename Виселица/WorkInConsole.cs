@@ -24,15 +24,19 @@ namespace Виселица
             }
             return lifes;
         }
-        public void DisplayWordwithLifes(int lifes, string encryptedWord, string declination)
+        public void DisplayWordwithLifes(int lifes, string encryptedWord, string declination, bool mistake)
         {
             Console.Clear();
+            if (mistake)
+                Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"осталось {lifes} {declination}") ;
             Console.WriteLine(encryptedWord);
+            Console.WriteLine("Введите букву");
+            Console.ResetColor();
         }
         public char ReadSymbol()
         {
-            Console.WriteLine("Введите букву");
+
             string input = Console.ReadLine();
             char[] inputinchar = input.ToLower().ToCharArray();
             return inputinchar[0];
