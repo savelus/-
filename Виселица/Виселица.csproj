@@ -43,6 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Button.cs" />
+    <Compile Include="NewGame.cs" />
+    <Compile Include="Rating.cs" />
+    <Compile Include="StartMenu.cs" />
     <Compile Include="Words.cs" />
     <Compile Include="WorkInConsole.cs" />
     <Compile Include="Logic.cs" />

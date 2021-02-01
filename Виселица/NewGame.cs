@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Виселица
 {
-    class Program
+    class NewGame
     {
-        static void Main(string[] args)
+        public static void StartGame(Button button)
         {
-            StartMenu start = new StartMenu();
-            start.CreateWindow();
+            WorkInConsole.ConsolePrintDummy(button);
         }
     }
 }

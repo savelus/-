@@ -7,7 +7,7 @@ using System.IO;
 
 namespace Виселица
 {
-    public static class Words
+    class Words
     {
         public static string GiveOutWord()
         {
@@ -15,6 +15,10 @@ namespace Виселица
             int countWords = allWords.Length;
             Random rnd = new Random();
             return allWords[rnd.Next(0, countWords)].ToLower();
+        }
+        public static void StartWords(Button button)
+        {
+            WorkInConsole.ConsolePrintDummy(button);
         }
     }
 }
